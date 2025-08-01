@@ -17,7 +17,9 @@ function App() {
   useEffect(() => {
     async function fetchTrains() {
       try {
-        const response = await axios.get("http://localhost:8080");
+        const response = await axios.get(
+          "https://trainreservationapi.onrender.com"
+        );
         const data = response.data;
         setTrains(data.trenler);
       } catch (error) {
@@ -46,7 +48,7 @@ function App() {
   async function checkReservation() {
     try {
       const response = await axios.post(
-        "http://localhost:8080/check-reservation",
+        "https://trainreservationapi.onrender.com/check-reservation",
         {
           Name: trainName,
           PassengerCount: passengerCount,
