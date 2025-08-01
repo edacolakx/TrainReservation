@@ -1,6 +1,4 @@
-import { use, useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 
@@ -39,9 +37,9 @@ function App() {
         setHiddenTrain(true);
       }
     } else {
-      setFilteredData([]); // searchTerm boşsa filtrelenmiş veriyi temizle
-      setHiddenTrain(false); // searchTerm boşsa listeyi gizle
-      setIsDismissed(false); // searchTerm boşsa isDismissed'i sıfırla
+      setFilteredData([]);
+      setHiddenTrain(false);
+      setIsDismissed(false);
     }
   }, [searchTerm, trains, isDismissed]);
 
@@ -59,9 +57,9 @@ function App() {
       setFinalResponse(data);
       console.log("Rezervasyon durumu:", data);
       console.log(trainName, passengerCount, differentWagons);
-      setDifferentWagons(false); // Rezervasyon kontrolü sonrası farklı vagon seçeneğini sıfırla
-      setPassengerCount(1); // Rezervasyon kontrolü sonrası yolcu sayısını sı
-      setSearchTerm(""); // Rezervasyon kontrolü sonrası arama terimini sıfırla
+      setDifferentWagons(false);
+      setPassengerCount(1);
+      setSearchTerm("");
     } catch (error) {
       console.error("Rezervasyon kontrolü sırasında bir hata oluştu:", error);
     }
@@ -81,12 +79,11 @@ function App() {
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            setIsDismissed(false); // Kullanıcı yazmaya başladığında manuel kapatma durumunu sıfırla
+            setIsDismissed(false);
           }}
           className="w-full border-2 border-gray-300 p-3 rounded-lg mb-2 focus:border-blue-500 focus:outline-none"
         />
 
-        {/* Arama sonuçları listesi */}
         {hiddenTrain && filteredData.length > 0 && (
           <ul className="absolute top-full left-0 right-0 bg-white shadow-lg border border-gray-200 rounded-lg z-10 max-h-60 overflow-y-auto">
             {filteredData.map((item, index) => (
@@ -97,7 +94,7 @@ function App() {
                   setSearchTerm(item.Ad);
                   setTrainName(item.Ad);
                   setHiddenTrain(false);
-                  setIsDismissed(true); // Liste manuel olarak kapatıldı
+                  setIsDismissed(true);
                   console.log("Seçilen tren:", item.Ad);
                 }}
               >
